@@ -1,0 +1,48 @@
+{% extends "base.jinja" %}
+{% block judul %}Buat akun{% endblock %}
+{% block kontent %}
+<div style="margin-top: 150px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 mx-auto">
+                <div class="card pt-4">
+                    <div class="card-body">
+                        <div class="text-center mb-5">
+                            <h3>Buat akun</h3>
+                        </div>
+                        <form method="post" enctype="multipart/form-data" action="">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group position-relative has-icon-left">
+                            <label for="username">Username</label>
+                            <div class="position-relative">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left">
+                            <label for="username">Nama Lengkap</label>
+                            <div class="position-relative">
+                                {{ form.name }}
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left">
+                            <div class="clearfix">
+                                <label for="password">Password</label>
+                                
+                            </div>
+                            <div class="position-relative">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <br>
+                        <div class="clearfix">
+                            {{ form.submit }}
+                        </div>
+                      </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

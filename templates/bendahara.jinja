@@ -1,0 +1,668 @@
+{% extends "base.jinja" %}
+{% block judul %}Alat bendahara{% endblock %}
+{% block kontent %}
+<div class="modal fade" id="TambahinNamaModal" tabindex="-1" aria-labelledby="TambahinNamaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/tambahinnama" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TambahinNamaModalLabel">Tambahin Nama</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <label class="text-center w-100"> Nama Lengkap </label>
+                                <input type="text" id="unama" name="nama" class="form-control" placeholder="Nama Lengkap" maxlength="40">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" class="btn btn-primary" value="Tambahin">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="TambahinMingguanModal" tabindex="-1" aria-labelledby="TambahinMingguanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/tambahinmingguan" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TambahinMingguanModalLabel">Tambahin mingguan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <label class="text-center w-100"> Minggu berapa </label>
+                                <input type="date" id="utanggal_buat" name="tanggal" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" class="btn btn-primary" value="Tambahin">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="BeliBarangModal" tabindex="-1" aria-labelledby="BeliBarangModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/belibarang" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="BeliBarangModalLabel">Beli barang</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <label class="text-center w-100"> Nama barang </label>
+                                <input type="text" id="unama" name="nama" class="form-control" placeholder="Nama Barang" maxlength="20" autocomplete="off">
+                                <br>
+                                <label class="text-center w-100"> Harga </label>
+                                <input type="number" class="form-select" name="harga" id="bayaran" placeholder="1000 Rp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" class="btn btn-primary" value="Beli">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="modal fade" id="UbahinHargaKas" tabindex="-1" aria-labelledby="UbahinHargaKasLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/ubahinhargakas" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="UbahinHargaKasLabel">Harga uang kas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            Jumlah :
+                            <input type="number" class="form-select" name="harga" id="UbahinHargaKas_bayaran" placeholder="1000 Rp" value="3000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <input type="submit" class="btn btn-primary" value="Tambahin">
+            </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<div class="modal fade" id="HapusinNamaModal" tabindex="-1" aria-labelledby="HapusinNamaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/hapusinnama" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="HapusinNamaModalLabel">Hapusin Nama</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                Nama : 
+                                <select class="form-select" name="id_siswa" id="id_siswa">
+                                    {% for i in list_user %}
+                                    <option value="{{ i.id }}">{{ i.nama }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" class="btn btn-danger" value="Hapus">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="HapusinMingguanModal" tabindex="-1" aria-labelledby="HapusinMingguanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/hapusinmingguan" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="HapusinMingguanModalLabel">Hapusin Mingguan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                Minggu :
+                                <select class="form-select" name="id_tanggal" id="id_tanggal">
+                                    {% for i in list_mingguan %}
+                                    <option value="{{ i.id }}">{{ i.tanggal }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" class="btn btn-danger" value="Hapusin">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="HapusinBarangModal" tabindex="-1" aria-labelledby="HapusinBarangModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/hapusinbarang" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="HapusinBarangModalLabel">Hapusin Barang</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                Nama : 
+                                <select class="form-select" name="id_barang" id="id_barang">
+                                    {% for i in list_barang %}
+                                    <option value="{{ i.id }}">{{ i.nama }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" class="btn btn-danger" value="Hapus">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="BayarMingguanModal" tabindex="-1" aria-labelledby="BayarMingguanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/bayarinsiswa" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="BayarMingguanModalLabel">Bayar mingguan siswa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                Nama : 
+                                <select class="form-select" name="id_siswa" id="id_siswa">
+                                    {% for i in list_user %}
+                                    <option value="{{ i.id }}">{{ i.nama }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br>
+                                Minggu :
+                                <select class="form-select" name="id_tanggal" id="id_tanggal">
+                                    {% for i in list_mingguan %}
+                                    <option value="{{ i.id }}">{{ i.tanggal }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br>
+                                Jumlah :
+                                <input type="number" class="form-select" name="bayaran" id="bayaran" placeholder="1000 Rp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" class="btn btn-primary" value="Tambahin">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="UbahMingguanModal" tabindex="-1" aria-labelledby="UbahMingguanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="/ubahinbayaransiswa" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UbahMingguanModalLabel">Ubah bayaran mingguan siswa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                Nama : 
+                                <select class="form-select" name="id_siswa" id="UbahMingguan_id_siswa" onchange="UbahNamaChange(this);">
+                                    {% for i in list_user %}
+                                    <option value="{{ i.id }}">{{ i.nama }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br>
+                                Minggu :
+                                <select class="form-select" name="id_tanggal" id="UbahMingguan_id_tanggal" onchange="UbahMingguanChange(this);" disabled>
+                                </select>
+                                <br>
+                                Jumlah :
+                                <input type="number" class="form-select" name="bayaran" id="UbahMingguan_bayaran" placeholder="1000 Rp" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <input type="submit" class="btn btn-primary" value="Tambahin">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="CetakTable" tabindex="-1" aria-labelledby="CetakTableModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CetakTableModalLabel">Cetak</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            Minggu :
+                            <select class="form-select" name="id_tanggal" id="CetakTable_id_tanggal" onchange="GantiCetakan(this.value);">
+                                {% for i in list_mingguan %}
+                                <option value="{{ i.id }}">{{ i.tanggal }}</option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="CetakTable_textarea" style="height: 100px; resize: none;" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button class="btn btn-warning" data-bs-dismiss="modal" onclick="CetakFunction();">Cetak</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('utama') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-home align-text-bottom"
+                                aria-hidden="true">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            Utama
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-users align-text-bottom"
+                                aria-hidden="true">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            Keluar
+                        </a>
+                    </li>
+                </ul>
+
+                <h6
+                    class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+                    <span>Saved reports</span>
+                    <a class="link-secondary" href="#" aria-label="Add a new report">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-plus-circle align-text-bottom" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                    </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-file-text align-text-bottom"
+                                aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            Current month
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-file-text align-text-bottom"
+                                aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            Last quarter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-file-text align-text-bottom"
+                                aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            Social engagement
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-file-text align-text-bottom"
+                                aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            Year-end sale
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" style="visibility: hidden;">Share</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" style="visibility: hidden;">Export</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-center">Uang Kas</h2>
+            <div class="table-responsive">
+                <table id="table_bendahara" class="table table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Nomor</th>
+                            <th scope="col">Nama</th>
+                            {% for i in list_mingguan_enumerate %}
+                            <th scope="col">Minggu {{ i[0]+1 }}, {{ i[1].tanggal }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in list_user %}
+                        <tr>
+                            <th scope="row">{{ i.id }}</th>
+                            <td>{{ i.nama }}</td>
+                            {% for j in list_mingguan %}
+                            <td id="{{ i.id }}_{{ j.id }}">0000</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>Total: </td>
+                            {% for i in mingguan %}
+                                {% if mingguan[i] == 0 %}
+                                    <th scope="row">0000</th>
+                                {% else %}
+                                    <th scope="row">{{mingguan[i]}}</th>
+                                {% endif%}
+                            {% endfor %}
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+            {% if list_barang %}
+            <h3>Barang Dibeli</h3>
+            <br>
+            <div class="table-responsive-sm">
+                <table id="table_belian" class="table table-bordered">
+                    <caption>Barang dibeli dengan uang kas</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Nomor</th>
+                            <th scope="col">Barang</th>
+                            <th scope="col">Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in list_barang_enumerate %}
+                        <tr>
+                            <th scope="row">{{ i[0]+1 }}</th>
+                            <td>{{ i[1].nama }}</td>
+                            <td>{{ i[1].harga }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+            {% if total < 0 %}
+            <h3>Total hasil uang kas: <span style="color: red;">{{ total }}</span></h1>
+            {% else %}
+            <h3>Total hasil uang kas: <span style="color: green;">{{ total }}</span></h1>
+            {% endif %}
+            <!-- <h3>Harga uang kas: 3000</h3> -->
+                
+            {% if 1 == 1 %}
+            <br>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahinNamaModal">Tambahin nama</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TambahinMingguanModal">Tambahin mingguan</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#BeliBarangModal">Beli barang</button>
+            <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#UbahinHargaKas">Harga uang kas</button> -->
+            <br>
+            <br>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#HapusinNamaModal">Hapusin Nama</button>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#HapusinMingguanModal">Hapusin Mingguan</button>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#HapusinBarangModal">Hapus Barang</button>
+            <br>
+            <br>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#BayarMingguanModal">Bayar mingguan</button>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#UbahMingguanModal">Ubah mingguan</button>
+            <br>
+            <br>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CetakTable">Cetak</button>
+            <a class="btn btn-warning" href="{{ url_for('download') }}">Download Database</a>
+            {% else %}
+            <br>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CetakTable">Cetak</button>
+            {% endif %}
+            
+            <div class="comments">
+                <form class="row g-2" action="/tambahinkomentar" method="post" onsubmit="KirimKomentar();">
+                    <div class="input-group mb-3">
+                        <input type="hidden" name="waktu" id="waktu_komentar">
+                        <input type="text" class="form-control" placeholder="Komentar" maxlength="100" name="komentar" autocomplete="off">
+                        <button class="btn btn-success" type="submit" id="button-addon2">Kirim</button>
+                    </div>
+                </form>
+                {% for i in list_komentar %}
+                <div class="comment">
+                    <div class="top-comment">
+                        <p class="user">{{ i.username }}</p>
+                        <p class="comment-ts">{{ i.waktu }}</p>
+                        {% if user.id == 1 %}
+                        <form action="/hapusinkomentar" method="post">
+                            <input type="hidden" name="id_komentar" value="{{ i.id }}">
+                            <input type="submit" class="btn btn-danger btn-sm" value="Hapus" style="margin-left: 10px;">
+                        </form>
+                        {% endif %}
+                    </div>
+                    <div class="comment-content">
+                        {{ i.komentar }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+</div>
+
+<style>
+    .top-bar {
+        background-color: skyblue;
+        padding: 0 40px;
+    }
+    .main {
+        background-color: #F6F6EF;
+        padding: 10px 40px;
+    }
+    .comments {
+        margin: 40px 0;
+    }
+    .comment {
+        margin: 10px 0;
+    }
+    .row {
+        padding: 5px 0;
+    }
+    .bottom, .top-comment {
+        display: flex;
+        color: grey;
+        font-size: 12px;
+    }
+    .timestamp {
+        padding-right: 10px;
+    }
+    .comment-ts {
+        padding-left: 10px;
+    }
+</style>
+
+<script>
+    function GantiCetakan(value) {
+        $.get(`/dapatincetakan?id_tanggal=${value}`, d => {
+            if(d.pesan !== "Tidak ada") {
+                $("#CetakTable_textarea").text(d.pesan);
+            }
+        })
+    }
+
+    function KirimKomentar() {
+        $("#waktu_komentar").val(new Date());
+    }
+    
+    function UbahNamaChange(selectElement) {
+        $.get(`dapatinbayaran?id_siswa=${selectElement.value}`, d => {
+            $("#UbahMingguan_id_tanggal").empty();
+            $("#UbahMingguan_bayaran").prop("disabled", true);
+            $("#UbahMingguan_bayaran").val("");
+            
+            if(d.bayaran !== undefined) {
+                for(let [id_tanggal, tanggal] of Object.entries(d.bayaran)) {
+                    $("#UbahMingguan_id_tanggal").append(`<option value=${id_tanggal}>${tanggal}</option>`)
+                }
+                document.getElementById("UbahMingguan_id_tanggal").selectedIndex = -1;
+            }
+            
+            $("#UbahMingguan_id_tanggal").prop("disabled", !(d.bayaran !== undefined));
+        });
+    }
+
+    function UbahMingguanChange(selectElement) {
+        $.get(`dapatinbayaran?id_siswa=${$("#UbahMingguan_id_siswa").val()}&id_tanggal=${selectElement.value}`, d => {
+            if(d.bayaran) {
+                $("#UbahMingguan_bayaran").val(d.bayaran);
+            }
+            
+            $("#UbahMingguan_bayaran").prop("disabled", !(d.bayaran !== undefined));
+        });
+    }
+
+    function CetakFunction() {
+        let textarea = document.getElementById("CetakTable_textarea");
+        textarea.select();
+        document.execCommand("copy");
+    }
+    
+    document.getElementById("utanggal_buat").value = new Date().toISOString().substring(0, 10);
+    
+    const list_modal = ["TambahinNamaModal", "TambahinMingguanModal", "HapusinNamaModal", "HapusinMingguanModal", "BayarMingguanModal", "UbahMingguanModal"];
+    for(let i of list_modal) {
+        new bootstrap.Modal(`#${i}`, {
+           backdrop: 'static',
+           keyboard: false,
+        });
+    }
+
+    document.getElementById("UbahMingguanModal").addEventListener("show.bs.modal", e => {
+        document.getElementById("UbahMingguan_id_siswa").selectedIndex = -1;
+        document.getElementById("UbahMingguan_id_tanggal").selectedIndex = -1;
+    });
+
+    document.getElementById("UbahMingguanModal").addEventListener("hide.bs.modal", e => {
+        $("#UbahMingguan_id_tanggal").prop("disabled", true);
+        $("#UbahMingguan_bayaran").prop("disabled", true);
+        $("#UbahMingguan_bayaran").val("");
+    });
+
+    document.getElementById("CetakTable").addEventListener("show.bs.modal", GantiCetakan($("#CetakTable_id_tanggal").val()));
+
+    {% for i in list_bayaran %}
+    document.getElementById("{{i.id_siswa}}_{{i.id_tanggal}}").innerHTML = "<div style='color: green;'><b>{{i.bayaran}}</b></div>";
+    {% endfor %}
+</script>
+{% endblock %}
