@@ -2,7 +2,7 @@
 Kita sudah berada di zaman-zaman modern, Dengan hal ini semua yang kita pelajarin sudah ada di dalam internet.
 Dan mencatat juga tidak perlu tulis di dalam buku, Dengan alat elektronik seperti hp sudah menjadi gampang untuk mencatat
 bentuknya kecil, ringan, dan mudah untuk disimpan terutama untuk mencatat uang kas, Tidak perlu lagi
-menulis dibuku, dengan alat elektronik semua orang bisa melihat siapa saja yang bayar dan yang belum bayar.
+menulis dibuku, dengan alat elektronik semua orang bisa melihat siapa saja yang bayar dan yang belum bayar dimanapun saja.
 Anda akan menggunakan website buatan Rafi Athallah yang namanya https://tugasindonesia.herokuapp.com
 Berikut langkah-langkahnya.
 
@@ -15,4 +15,4 @@ Berikut langkah-langkahnya.
 7. Selanjutnya tambahin mingguan untuk nama yang ingin bayar di mingguan tersebut
 8. Berikutnya kalau ada nama yang ingin bayar, Tekan tombol Bayar mingguan dan pilih nama yang ingin bayar dengan jumlahnya
 9. Kalau anda ingin mencatat pembelian alat sekolah dengan uang kas, Bisa menekan tombol Beli barang isi formulir nama dan harganya.
-10. Dan selamat, Anda sudah mencatat uang kas menggunakan alat elektronik semua orang bisa melihat bayarannya dengan menggunakan website buatan Rafi Athallah! 
+10. Dan selamat, Anda sudah mencatat uang kas menggunakan alat elektronik semua orang bisa melihat bayarannya dengan menggunakan website buatan Rafi Athallah!
