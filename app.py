@@ -262,26 +262,6 @@ def login():
 
         # flash("Password salah! Mohon dicoba lagi")
 
-        #Kemungkinan masuk dengan e-learning jadi kita buat akun baru
-        with requests.session() as s:
-            r = s.get("https://belajar.e-smanpul.com/siswa/login")
-            soup = BeautifulSoup(r.content, 'lxml')
-            r = s.post("https://belajar.e-smanpul.com/auth/proc/c2lzd2E=", {
-                "_token": soup.select_one('[name="_token"]')['value'],
-                "username": form.username.data,
-                "password": form.password.data
-            })
-            soup = BeautifulSoup(r.content, 'lxml')
-            nama = soup.select_one('[class*="profile-username"]')
-
-            if nama:
-                user = User(username=form.username.data, password=bcrypt.generate_password_hash(form.password.data), name=nama.text.strip())
-                db.session.add(user)
-                db.session.commit()
-
-                login_user(user)
-                return redirect(url_for("bendahara"))
-
     return render_template("login.jinja", form=form)
 
 @app.route('/register', methods=["GET", "POST"])
