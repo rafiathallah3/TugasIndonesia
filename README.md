@@ -1,1 +1,22 @@
-ini sekedar tugas bahasa indonesia dengan gaya
+ini sekedar tugas bahasa indonesia membuat teks prosedur dengan gaya
+
+			Cara mencatat uang kas dengan alat elektronik
+Kita sudah berada di zaman-zaman modern, Dengan hal ini semua yang kita pelajarin sudah ada di dalam internet.
+Dan mencatat juga tidak perlu tulis di dalam buku, Dengan alat elektronik seperti hp sudah menjadi gampang untuk mencatat
+bentuknya kecil, ringan, dan mudah untuk disimpan terutama untuk mencatat uang kas, Tidak perlu lagi
+menulis dibuku, dengan alat elektronik semua orang bisa melihat siapa saja yang bayar dan yang belum bayar dimanapun saja.
+Anda akan menggunakan website buatan Rafi Athallah yang namanya https://tugasindonesia.herokuapp.com
+Berikut langkah-langkahnya.
+
+1. Langkah pertama, silahkan anda membuka google chrome dihp anda dan tulis di link https://tugasindonesia.herokuapp.com
+2. Selanjutnya anda akan melihat websitenya, Yang anda akan lakukan adalah menekan tombol "Uang kas"
+3. Setelah anda menekannya anda akan melihat Masuk akun, Kalau anda tidak mempunyai akunnya disilahkan untuk Membuat akunnya dengan menekan tombol "Buat akun"
+4. Setelah itu, Isilah formulir yang ada seperti Nama, nama lengkap dan password, kalau sudah selesai tekan tombol "Buat akun"
+5. Setelah menekan tombol Buat akun, Dipersilahkan untuk masuk akun yang sudah anda buat dengan benar
+6. Selamat, anda sudah membuat catatan! Anda akan diminta untuk menulis nama yang anda ingin tambahin
+7. Selanjutnya tambahin mingguan untuk nama yang ingin bayar di mingguan tersebut
+8. Berikutnya kalau ada nama yang ingin bayar, Tekan tombol Bayar mingguan dan pilih nama yang ingin bayar dengan jumlahnya
+9. Kalau anda ingin mencatat pembelian alat sekolah dengan uang kas, Bisa menekan tombol Beli barang isi formulir nama dan harganya.
+10. Dan selamat, Anda sudah mencatat uang kas menggunakan alat elektronik semua orang bisa melihat bayarannya dengan menggunakan website buatan Rafi Athallah!
+
+nilai gua tinggi coy
